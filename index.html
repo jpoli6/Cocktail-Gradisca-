@@ -2,6 +2,7 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gradisca — Ricette</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Space+Mono:wght@400;700&display=swap');
@@ -250,6 +251,106 @@
   .card.hidden{
     display:none;
   }
+
+  /* ===== MOBILE OPTIMIZATION ===== */
+  @media (max-width: 640px){
+    body{
+      padding: 32px 14px 70px;
+    }
+
+    h1{
+      font-size: 36px;
+    }
+
+    .eyebrow{
+      font-size: 10px;
+      letter-spacing: 0.28em;
+    }
+
+    .divider{
+      margin-top: 20px;
+    }
+
+    header{
+      margin-bottom: 32px;
+    }
+
+    .search-wrap{
+      margin-bottom: 28px;
+    }
+
+    .search-box{
+      padding: 12px 16px;
+    }
+
+    .search-box input{
+      font-size: 16px; /* prevents iOS auto-zoom on focus */
+    }
+
+    .filter-row{
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 4px;
+      margin-left: -2px;
+      scrollbar-width: none;
+    }
+
+    .filter-row::-webkit-scrollbar{
+      display: none;
+    }
+
+    .filter-chip{
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .card{
+      padding: 22px 18px;
+      margin-bottom: 18px;
+    }
+
+    .card::before{
+      top: 6px; left: 6px; right: 6px; bottom: 6px;
+    }
+
+    .card-head{
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+
+    .card-name{
+      font-size: 23px;
+    }
+
+    .card-glass{
+      font-size: 10px;
+    }
+
+    .desc{
+      font-size: 14.5px;
+    }
+
+    .ingredients li{
+      font-size: 13px;
+      flex-wrap: wrap;
+    }
+
+    .method, .garnish{
+      font-size: 13px;
+    }
+  }
+
+  @media (max-width: 380px){
+    h1{
+      font-size: 30px;
+    }
+
+    .card-name{
+      font-size: 21px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -312,6 +413,21 @@
     <div class="method"><span class="label">Metodo</span>Shakera tutti gli ingredienti energicamente con ghiaccio. Filtra in tiki mug o tumbler alto pieno di ghiaccio tritato.</div>
     <div class="garnish"><span class="label">Garnish</span> — Fetta d'arancia</div>
     <div class="garnish"><span class="label">Gusto</span> — Dolce, speziato, avvolgente</div>
+  </div>
+
+  <div class="card" data-name="bellini" data-base="prosecco" data-taste="fruttato, delicato, frizzante">
+    <div class="card-head">
+      <div class="card-name">Bellini</div>
+      <div class="card-glass">Flute</div>
+    </div>
+    <div class="desc">Ricetta IBA. Nato al Harry's Bar di Venezia: Prosecco e purea di pesca in un aperitivo elegante, delicato e frizzante.</div>
+    <ul class="ingredients">
+      <li><span>Prosecco</span><span class="amt">100 ml</span></li>
+      <li><span>Purea di pesca</span><span class="amt">50 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa direttamente nel flute la purea di pesca, poi completa con Prosecco ben freddo.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Nessuno</div>
+    <div class="garnish"><span class="label">Gusto</span> — Fruttato, delicato, frizzante</div>
   </div>
 
   <div class="card" data-name="black russian" data-base="vodka" data-taste="intenso, dolce, robusto">
@@ -432,6 +548,21 @@
     <div class="garnish"><span class="label">Gusto</span> — Fresco, acidulo, pulito</div>
   </div>
 
+  <div class="card" data-name="dry martini" data-base="gin" data-taste="secco, aromatico, deciso">
+    <div class="card-head">
+      <div class="card-name">Dry Martini</div>
+      <div class="card-glass">Coppetta Martini</div>
+    </div>
+    <div class="desc">Ricetta IBA. Gin e vermouth secco in purezza: l'aperitivo più iconico e dibattuto della storia della miscelazione.</div>
+    <ul class="ingredients">
+      <li><span>Gin</span><span class="amt">60 ml</span></li>
+      <li><span>Vermouth secco</span><span class="amt">10 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa gli ingredienti nel mixing glass con ghiaccio, mescola bene. Filtra in coppetta martini fredda.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Twist di limone</div>
+    <div class="garnish"><span class="label">Gusto</span> — Secco, aromatico, deciso</div>
+  </div>
+
   <div class="card" data-name="espresso martini" data-base="vodka" data-taste="intenso, cremoso, tostato">
     <div class="card-head">
       <div class="card-name">Espresso Martini</div>
@@ -449,6 +580,107 @@
     <div class="garnish"><span class="label">Gusto</span> — Intenso, cremoso, tostato</div>
   </div>
 
+  <div class="card" data-name="fernandito" data-base="fernet" data-taste="amaricante, deciso, rinfrescante">
+    <div class="card-head">
+      <div class="card-name">Fernandito</div>
+      <div class="card-glass">Highball</div>
+    </div>
+    <div class="desc">Non IBA — celebre long drink sudamericano (soprattutto argentino): Fernet-Branca e cola in un mix amaricante e rinfrescante.</div>
+    <ul class="ingredients">
+      <li><span>Fernet-Branca</span><span class="amt">50 ml</span></li>
+      <li><span>Cola</span><span class="amt">a colmare</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa il Fernet su ghiaccio in tumbler alto, completa con cola e mescola delicatamente.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Fetta di lime</div>
+    <div class="garnish"><span class="label">Gusto</span> — Amaricante, deciso, rinfrescante</div>
+  </div>
+
+  <div class="card" data-name="garibaldi" data-base="campari" data-taste="agrumato, amaricante, fresco">
+    <div class="card-head">
+      <div class="card-name">Garibaldi</div>
+      <div class="card-glass">Highball</div>
+    </div>
+    <div class="desc">Ricetta IBA. Campari e succo d'arancia fresco: un aperitivo italiano semplice, colorato e dal carattere amaricante.</div>
+    <ul class="ingredients">
+      <li><span>Campari</span><span class="amt">50 ml</span></li>
+      <li><span>Succo d'arancia fresco</span><span class="amt">120 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Riempi il bicchiere di ghiaccio, versa Campari e succo d'arancia, mescola bene.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Fetta d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Agrumato, amaricante, fresco</div>
+  </div>
+
+  <div class="card" data-name="gin fizz" data-base="gin" data-taste="agrumato, frizzante, fresco">
+    <div class="card-head">
+      <div class="card-name">Gin Fizz</div>
+      <div class="card-glass">Tumbler</div>
+    </div>
+    <div class="desc">Ricetta IBA. Gin, limone e zucchero shakerati e allungati da un tocco di soda: fresco, frizzante, senza ghiaccio in bicchiere.</div>
+    <ul class="ingredients">
+      <li><span>Gin</span><span class="amt">45 ml</span></li>
+      <li><span>Succo di limone</span><span class="amt">30 ml</span></li>
+      <li><span>Sciroppo di zucchero</span><span class="amt">10 ml</span></li>
+      <li><span>Soda</span><span class="amt">uno splash</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Shakera gin, limone e sciroppo con ghiaccio (soda esclusa). Filtra in tumbler stretto e alto, completa con uno splash di soda. Servi senza ghiaccio.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Fetta di limone</div>
+    <div class="garnish"><span class="label">Gusto</span> — Agrumato, frizzante, fresco</div>
+  </div>
+
+  <div class="card" data-name="john collins" data-base="gin" data-taste="agrumato, dissetante, fresco">
+    <div class="card-head">
+      <div class="card-name">John Collins</div>
+      <div class="card-glass">Collins Glass</div>
+    </div>
+    <div class="desc">Ricetta IBA. Gin, limone, zucchero e soda costruiti direttamente sul ghiaccio: il fratello "build" del Gin Fizz, lungo e dissetante.</div>
+    <ul class="ingredients">
+      <li><span>Gin</span><span class="amt">45 ml</span></li>
+      <li><span>Succo di limone</span><span class="amt">30 ml</span></li>
+      <li><span>Sciroppo di zucchero</span><span class="amt">15 ml</span></li>
+      <li><span>Soda</span><span class="amt">60 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa tutti gli ingredienti direttamente in un Collins glass pieno di ghiaccio, mescola delicatamente.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Fetta di limone</div>
+    <div class="garnish"><span class="label">Gusto</span> — Agrumato, dissetante, fresco</div>
+  </div>
+
+  <div class="card" data-name="long island iced tea" data-base="vodka gin rum tequila" data-taste="intenso, agrumato, deciso">
+    <div class="card-head">
+      <div class="card-name">Long Island Iced Tea</div>
+      <div class="card-glass">Highball</div>
+    </div>
+    <div class="desc">Ricetta IBA. Cinque distillati bianchi, limone e zucchero, chiusi da un velo di cola: intenso, ingannevole nel gusto, potente nella struttura.</div>
+    <ul class="ingredients">
+      <li><span>Tequila</span><span class="amt">15 ml</span></li>
+      <li><span>Vodka</span><span class="amt">15 ml</span></li>
+      <li><span>Rum bianco</span><span class="amt">15 ml</span></li>
+      <li><span>Triple sec</span><span class="amt">15 ml</span></li>
+      <li><span>Gin</span><span class="amt">15 ml</span></li>
+      <li><span>Succo di limone</span><span class="amt">25 ml</span></li>
+      <li><span>Sciroppo di zucchero</span><span class="amt">30 ml</span></li>
+      <li><span>Cola</span><span class="amt">a colmare</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa tutti gli ingredienti (tranne la cola) in un highball pieno di ghiaccio, mescola delicatamente, completa con cola.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Fetta di limone</div>
+    <div class="garnish"><span class="label">Gusto</span> — Intenso, agrumato, deciso</div>
+  </div>
+
+  <div class="card" data-name="manhattan" data-base="whiskey rye" data-taste="robusto, speziato, vellutato">
+    <div class="card-head">
+      <div class="card-name">Manhattan</div>
+      <div class="card-glass">Coppetta Cocktail</div>
+    </div>
+    <div class="desc">Ricetta IBA. Rye whiskey, vermouth rosso e Angostura mescolati con cura: uno dei cocktail più antichi e influenti della storia.</div>
+    <ul class="ingredients">
+      <li><span>Rye Whiskey</span><span class="amt">50 ml</span></li>
+      <li><span>Vermouth rosso dolce</span><span class="amt">20 ml</span></li>
+      <li><span>Angostura bitter</span><span class="amt">1 dash</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa gli ingredienti nel mixing glass con ghiaccio, mescola bene. Filtra in coppetta cocktail fredda.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Twist d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Robusto, speziato, vellutato</div>
+  </div>
+
   <div class="card" data-name="margarita" data-base="tequila" data-taste="agrumato, equilibrato, sapido">
     <div class="card-head">
       <div class="card-name">Margarita</div>
@@ -463,6 +695,21 @@
     <div class="method"><span class="label">Metodo</span>Shakera tutti gli ingredienti con ghiaccio. Filtra in coppa con bordo salato, oppure servi on the rocks.</div>
     <div class="garnish"><span class="label">Garnish</span> — Rondella di lime</div>
     <div class="garnish"><span class="label">Gusto</span> — Agrumato, equilibrato, sapido</div>
+  </div>
+
+  <div class="card" data-name="mimosa" data-base="prosecco champagne" data-taste="fruttato, frizzante, delicato">
+    <div class="card-head">
+      <div class="card-name">Mimosa</div>
+      <div class="card-glass">Flute</div>
+    </div>
+    <div class="desc">Ricetta IBA. Succo d'arancia e champagne in parti uguali: il classico da brunch, semplice e sempre elegante.</div>
+    <ul class="ingredients">
+      <li><span>Succo d'arancia</span><span class="amt">75 ml</span></li>
+      <li><span>Champagne (o Prosecco brut)</span><span class="amt">75 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa il succo d'arancia nel flute, completa con champagne ben freddo.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Twist d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Fruttato, frizzante, delicato</div>
   </div>
 
   <div class="card" data-name="mojito" data-base="rum" data-taste="fresco, agrumato, mentolato">
@@ -482,6 +729,22 @@
     <div class="garnish"><span class="label">Garnish</span> — Rametto di menta</div>
     <div class="garnish"><span class="label">Gusto</span> — Fresco, agrumato, mentolato</div>
     <div class="method" style="margin-top:16px; border-top:1px dashed var(--line); padding-top:14px;"><span class="label">Variante Tradizionale</span>50 ml rum bianco, 1/2 lime a spicchi, 2 cucchiaini di zucchero semolato, 8-10 foglie di menta, ghiaccio tritato, soda a colmare. Pesta lime e zucchero per estrarre olii e succo, aggiungi la menta pestando leggermente, versa il rum, riempi di ghiaccio tritato, completa con soda e mescola dal basso verso l'alto.</div>
+  </div>
+
+  <div class="card" data-name="moscow mule" data-base="vodka" data-taste="piccante, agrumato, dissetante">
+    <div class="card-head">
+      <div class="card-name">Moscow Mule</div>
+      <div class="card-glass">Mule Cup / Rocks Glass</div>
+    </div>
+    <div class="desc">Ricetta IBA. Vodka, lime e ginger beer, servito nella tipica coppa di rame: piccante, agrumato e sempre dissetante.</div>
+    <ul class="ingredients">
+      <li><span>Vodka</span><span class="amt">45 ml</span></li>
+      <li><span>Succo di lime</span><span class="amt">10 ml</span></li>
+      <li><span>Ginger beer</span><span class="amt">120 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa vodka e ginger beer nella mule cup con ghiaccio, aggiungi il lime e mescola delicatamente.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Fetta di lime</div>
+    <div class="garnish"><span class="label">Gusto</span> — Piccante, agrumato, dissetante</div>
   </div>
 
   <div class="card" data-name="old fashioned" data-base="whiskey bourbon" data-taste="robusto, speziato, avvolgente">
@@ -518,6 +781,21 @@
     <div class="garnish"><span class="label">Gusto</span> — Agrumato, amaricante, fresco</div>
   </div>
 
+  <div class="card" data-name="rusty nail" data-base="scotch drambuie" data-taste="intenso, dolce, speziato">
+    <div class="card-head">
+      <div class="card-name">Rusty Nail</div>
+      <div class="card-glass">Rocks Glass</div>
+    </div>
+    <div class="desc">Ricetta IBA. Scotch whisky e Drambuie: un after-dinner intenso, dolce e speziato dal carattere scozzese deciso.</div>
+    <ul class="ingredients">
+      <li><span>Scotch whisky</span><span class="amt">45 ml</span></li>
+      <li><span>Drambuie</span><span class="amt">25 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa gli ingredienti direttamente su ghiaccio in rocks glass, mescola delicatamente.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Twist d'arancia (opzionale)</div>
+    <div class="garnish"><span class="label">Gusto</span> — Intenso, dolce, speziato</div>
+  </div>
+
   <div class="card" data-name="sally" data-base="tequila" data-taste="amaricante, agrumato, aromatico">
     <div class="card-head">
       <div class="card-name">Sally</div>
@@ -536,6 +814,39 @@
     <div class="garnish"><span class="label">Gusto</span> — Amaricante, agrumato, aromatico</div>
   </div>
 
+  <div class="card" data-name="sazerac" data-base="cognac" data-taste="speziato, aromatico, deciso">
+    <div class="card-head">
+      <div class="card-name">Sazerac</div>
+      <div class="card-glass">Rocks Glass</div>
+    </div>
+    <div class="desc">Ricetta IBA. Cognac, assenzio e Peychaud's bitters: il cocktail simbolo di New Orleans, speziato e dal profilo anisato.</div>
+    <ul class="ingredients">
+      <li><span>Cognac</span><span class="amt">50 ml</span></li>
+      <li><span>Assenzio</span><span class="amt">10 ml (risciacquo)</span></li>
+      <li><span>Zolletta di zucchero</span><span class="amt">1</span></li>
+      <li><span>Peychaud's Bitters</span><span class="amt">2 dash</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Risciacqua un rocks glass freddo con l'assenzio, aggiungi ghiaccio tritato e metti da parte. Mescola gli altri ingredienti con ghiaccio nel mixing glass. Elimina ghiaccio ed eccesso di assenzio dal primo bicchiere, filtra il drink.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Twist di limone</div>
+    <div class="garnish"><span class="label">Gusto</span> — Speziato, aromatico, deciso</div>
+  </div>
+
+  <div class="card" data-name="spritz veneziano" data-base="aperol prosecco" data-taste="amaricante, fruttato, frizzante">
+    <div class="card-head">
+      <div class="card-name">Spritz Veneziano</div>
+      <div class="card-glass">Calice da Vino</div>
+    </div>
+    <div class="desc">Ricetta IBA. Prosecco, Aperol e un tocco di soda: l'aperitivo veneziano più amato al mondo, fresco e amaricante.</div>
+    <ul class="ingredients">
+      <li><span>Prosecco</span><span class="amt">60 ml</span></li>
+      <li><span>Aperol</span><span class="amt">40 ml</span></li>
+      <li><span>Soda</span><span class="amt">uno splash</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Riempi un calice da vino con ghiaccio, versa Prosecco e Aperol, completa con uno splash di soda, mescola delicatamente.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Mezza fetta d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Amaricante, fruttato, frizzante</div>
+  </div>
+
   <div class="card" data-name="stregowich" data-base="vodka" data-taste="erbaceo, agrumato, amaricante">
     <div class="card-head">
       <div class="card-name">Stregowich</div>
@@ -552,6 +863,23 @@
     <div class="method"><span class="label">Metodo</span>Shakera Strega, vodka, lime e pompelmo con ghiaccio. Filtra in tumbler alto pieno di ghiaccio, completa con tonica e mescola delicatamente.</div>
     <div class="garnish"><span class="label">Garnish</span> — Rametto di menta</div>
     <div class="garnish"><span class="label">Gusto</span> — Erbaceo, agrumato, amaricante</div>
+  </div>
+
+  <div class="card" data-name="tom collins" data-base="gin" data-taste="agrumato, morbido, fresco">
+    <div class="card-head">
+      <div class="card-name">Tom Collins</div>
+      <div class="card-glass">Collins Glass</div>
+    </div>
+    <div class="desc">Ricetta IBA. Come il John Collins ma con Old Tom Gin, più dolce e morbido: gin, limone, zucchero e soda costruiti sul ghiaccio.</div>
+    <ul class="ingredients">
+      <li><span>Old Tom Gin</span><span class="amt">45 ml</span></li>
+      <li><span>Succo di limone</span><span class="amt">30 ml</span></li>
+      <li><span>Sciroppo di zucchero</span><span class="amt">15 ml</span></li>
+      <li><span>Soda</span><span class="amt">60 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa tutti gli ingredienti direttamente in un Collins glass pieno di ghiaccio, mescola delicatamente.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Fetta di limone</div>
+    <div class="garnish"><span class="label">Gusto</span> — Agrumato, morbido, fresco</div>
   </div>
 
   <div class="card" data-name="tommy's margarita" data-base="tequila" data-taste="agrumato, dolce, fresco">
@@ -594,15 +922,32 @@
       <div class="card-name">Whiskey Sour</div>
       <div class="card-glass">Rocks Glass</div>
     </div>
-    <div class="desc">Bourbon, limone e zucchero shakerati in perfetto equilibrio agrodolce: un sour robusto e vellutato, intramontabile.</div>
+    <div class="desc">Ricetta IBA. Bourbon, limone e zucchero shakerati in perfetto equilibrio agrodolce: un sour robusto e vellutato, intramontabile.</div>
     <ul class="ingredients">
-      <li><span>Whiskey (bourbon)</span><span class="amt">45 ml</span></li>
-      <li><span>Succo di limone</span><span class="amt">25 ml</span></li>
+      <li><span>Bourbon Whiskey</span><span class="amt">50 ml</span></li>
+      <li><span>Succo di limone</span><span class="amt">30 ml</span></li>
       <li><span>Sciroppo di zucchero</span><span class="amt">15 ml</span></li>
+      <li><span>Albume d'uovo</span><span class="amt">qualche goccia (opzionale)</span></li>
     </ul>
     <div class="method"><span class="label">Metodo</span>Shakera con ghiaccio, filtra in rocks glass con ghiaccio.</div>
     <div class="garnish"><span class="label">Garnish</span> — Twist di limone</div>
     <div class="garnish"><span class="label">Gusto</span> — Agrumato, robusto, vellutato</div>
+  </div>
+
+  <div class="card" data-name="white lady" data-base="gin" data-taste="agrumato, secco, elegante">
+    <div class="card-head">
+      <div class="card-name">White Lady</div>
+      <div class="card-glass">Coppetta Cocktail</div>
+    </div>
+    <div class="desc">Ricetta IBA. Gin, triple sec e limone shakerati: un sidecar "vestito di bianco", secco, agrumato ed elegante.</div>
+    <ul class="ingredients">
+      <li><span>Gin</span><span class="amt">40 ml</span></li>
+      <li><span>Triple sec</span><span class="amt">30 ml</span></li>
+      <li><span>Succo di limone</span><span class="amt">20 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Shakera tutti gli ingredienti con ghiaccio, filtra in coppetta cocktail grande e fredda.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Twist di limone</div>
+    <div class="garnish"><span class="label">Gusto</span> — Agrumato, secco, elegante</div>
   </div>
 
   <div class="card" data-name="white russian" data-base="vodka" data-taste="cremoso, dolce, intenso">
@@ -621,7 +966,8 @@
     <div class="garnish"><span class="label">Gusto</span> — Cremoso, dolce, intenso</div>
   </div>
 
-  <footer>Carta creata su misura — venti ricette originali</footer>
+
+  <footer>Carta creata su misura — trentacinque ricette originali</footer>
 
 </div>
 
