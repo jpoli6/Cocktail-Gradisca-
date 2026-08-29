@@ -5,23 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gradisca — Ricette</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Space+Mono:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
 
   :root{
     --ink:#0a1f44;
-    --paper:#ffffff;
-    --panel:#fdfdfd;
-    --line: #c7ccd6;
+    --paper:#e4e9f2;
+    --panel:#ffffff;
+    --line: #a9b3c4;
     --accent:#c8102e;
     --accent2:#00296e;
-    --gold:#5bc2e7;
+    --gold:#0064a8;
   }
 
   *{box-sizing:border-box; margin:0; padding:0;}
   body{
     background: var(--paper);
     color: var(--ink);
-    font-family:'Fraunces', serif;
+    font-family:'Inter', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
     padding: 60px 20px 100px;
   }
 
@@ -38,7 +40,8 @@
   .eyebrow{
     font-family:'Space Mono', monospace;
     letter-spacing: 0.35em;
-    font-size: 11px;
+    font-size: 12px;
+    font-weight: 700;
     color: var(--gold);
     text-transform: uppercase;
     margin-bottom: 18px;
@@ -46,14 +49,15 @@
 
   h1{
     font-size: 52px;
-    font-weight: 600;
+    font-weight: 800;
     letter-spacing: -0.01em;
+    color: var(--ink);
   }
 
   .subtitle{
     font-style: italic;
     font-weight: 500;
-    color: #55503f;
+    color: #2c3e5c;
     margin-top: 10px;
     font-size: 17px;
   }
@@ -68,6 +72,7 @@
   .card{
     background: var(--panel);
     border: 1px solid var(--line);
+    box-shadow: 0 2px 10px rgba(10,31,68,0.08);
     padding: 34px 38px;
     margin-bottom: 26px;
     position: relative;
@@ -77,7 +82,7 @@
     content: "";
     position: absolute;
     top: 8px; left: 8px; right: 8px; bottom: 8px;
-    border: 1px solid rgba(169,130,47,0.25);
+    border: 1px solid rgba(0,41,110,0.15);
     pointer-events:none;
   }
 
@@ -93,7 +98,7 @@
 
   .card-name{
     font-size: 28px;
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .card-glass{
@@ -107,8 +112,8 @@
 
   .desc{
     font-style: italic;
-    color: #4a4636;
-    font-size: 15.5px;
+    color: #33456b;
+    font-size: 16px;
     line-height: 1.55;
     margin-bottom: 20px;
   }
@@ -120,11 +125,11 @@
 
   .ingredients li{
     font-family:'Space Mono', monospace;
-    font-size: 13.5px;
+    font-size: 14.5px;
     display:flex;
     justify-content: space-between;
     padding: 5px 0;
-    border-bottom: 1px dotted #d8cfb8;
+    border-bottom: 1px dotted #c7ccd6;
   }
 
   .ingredients li:last-child{ border-bottom:none; }
@@ -135,8 +140,8 @@
   }
 
   .method{
-    font-size: 13.5px;
-    color: #55503f;
+    font-size: 14.5px;
+    color: #2c3e5c;
     line-height: 1.6;
     margin-top: 14px;
   }
@@ -144,7 +149,7 @@
   .method .label{
     font-family:'Space Mono', monospace;
     text-transform: uppercase;
-    font-size: 10.5px;
+    font-size: 11px;
     letter-spacing: 0.1em;
     color: var(--gold);
     display:block;
@@ -153,14 +158,14 @@
 
   .garnish{
     margin-top: 10px;
-    font-size: 13px;
-    color: #6b6653;
+    font-size: 14px;
+    color: #4a5875;
   }
 
   .garnish .label{
     font-family:'Space Mono', monospace;
     text-transform: uppercase;
-    font-size: 10.5px;
+    font-size: 11px;
     letter-spacing: 0.1em;
     color: var(--gold);
   }
@@ -172,7 +177,7 @@
     font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: #8a8367;
+    color: #5a6684;
   }
 
   .search-wrap{
@@ -206,7 +211,7 @@
   }
 
   .search-box input::placeholder{
-    color:#a39c85;
+    color:#7c88a3;
   }
 
   .filter-row{
@@ -224,7 +229,7 @@
     padding: 7px 14px;
     border: 1px solid var(--line);
     background: var(--panel);
-    color: #55503f;
+    color: #2c3e5c;
     cursor: pointer;
     user-select:none;
     transition: all 0.15s ease;
@@ -243,7 +248,7 @@
   .no-results{
     text-align:center;
     font-style: italic;
-    color: #6b6653;
+    color: #4a5875;
     padding: 40px 0;
     display:none;
   }
