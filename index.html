@@ -172,6 +172,41 @@
     color: var(--gold);
   }
 
+  .card-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 6px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+  }
+
+  .card-tag{
+    font-family:'Space Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: var(--paper);
+    color: #4a5875;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.15s ease;
+  }
+
+  .card-tag:hover{
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .card-tag--negroni{ border-color:#8a1f1c66; color:#8a1f1c; }
+  .card-tag--spritz{ border-color:#e0893966; color:#b5651d; }
+  .card-tag--mojito{ border-color:#2e6b4166; color:#2e6b41; }
+  .card-tag--longdrink{ border-color:#1f7a8c66; color:#145b68; }
+  .card-tag--fuori-menu{ border-color:#8a8f9c; color:#5a6684; }
+
   footer{
     text-align:center;
     margin-top: 50px;
@@ -247,6 +282,47 @@
     color: var(--panel);
   }
 
+  /* Colori identitari per le schede-varianti */
+  .filter-chip--negroni{
+    border-color: #b3272488;
+    color: #8a1f1c;
+  }
+  .filter-chip--negroni.active{
+    background: #8a1f1c;
+    border-color: #8a1f1c;
+    color: #fff;
+  }
+
+  .filter-chip--spritz{
+    border-color: #e0893988;
+    color: #b5651d;
+  }
+  .filter-chip--spritz.active{
+    background: #e08939;
+    border-color: #e08939;
+    color: #fff;
+  }
+
+  .filter-chip--mojito{
+    border-color: #3f8f5788;
+    color: #2e6b41;
+  }
+  .filter-chip--mojito.active{
+    background: #2e6b41;
+    border-color: #2e6b41;
+    color: #fff;
+  }
+
+  .filter-chip--longdrink{
+    border-color: #1f7a8c88;
+    color: #145b68;
+  }
+  .filter-chip--longdrink.active{
+    background: #1f7a8c;
+    border-color: #1f7a8c;
+    color: #fff;
+  }
+
   .no-results{
     text-align:center;
     font-style: italic;
@@ -319,21 +395,24 @@
 
   .base-recipe{
     background: var(--paper);
-    border: 1px dashed var(--line);
-    padding: 16px 18px;
-    margin-bottom: 20px;
-    font-size: 14.5px;
-    color: #2c3e5c;
+    border: 1.5px dashed var(--line);
+    padding: 20px 22px;
+    margin-bottom: 22px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--ink);
   }
 
   .base-recipe .label{
     font-family:'Space Mono', monospace;
     text-transform: uppercase;
-    font-size: 11px;
-    letter-spacing: 0.1em;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
     color: var(--gold);
     display:block;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   .variant-list{
@@ -356,13 +435,6 @@
   .variant-list .variant-name{
     font-weight: 600;
     color: var(--ink);
-  }
-
-  .variant-list .variant-mix{
-    font-family:'Space Mono', monospace;
-    font-size: 12.5px;
-    color: #4a5875;
-    text-align:right;
   }
 
   .variant-ingredients{
@@ -408,12 +480,6 @@
     font-size: 15.5px;
   }
 
-  .negroni-list .variant-mix{
-    text-align:left;
-    font-size: 13px;
-    line-height: 1.6;
-  }
-
   .negroni-list .variant-note{
     font-size: 12.5px;
     color: var(--accent);
@@ -421,6 +487,10 @@
   }
 
   @media (max-width: 640px){
+    .base-recipe{
+      font-size: 15px;
+      padding: 16px 18px;
+    }
     .card-expandable summary{
       padding: 22px 18px;
     }
@@ -563,6 +633,15 @@
       <span class="filter-chip active" data-filter-type="category" data-filter-value="menu">Menù</span>
       <span class="filter-chip" data-filter-type="category" data-filter-value="fuori-menu">Fuori Menù</span>
     </div>
+    <div class="filter-row" id="tagFilters">
+      <span class="filter-chip" data-filter-type="tag" data-filter-value="caffeina">☕ Caffeina</span>
+      <span class="filter-chip" data-filter-type="tag" data-filter-value="sour">🍋 Sour</span>
+      <span class="filter-chip" data-filter-type="tag" data-filter-value="i-nostri">⭐ I Nostri</span>
+      <span class="filter-chip filter-chip--negroni" data-filter-type="special" data-filter-value="negroni">🍸 Negroni</span>
+      <span class="filter-chip filter-chip--spritz" data-filter-type="special" data-filter-value="spritz">🥂 Spritz</span>
+      <span class="filter-chip filter-chip--mojito" data-filter-type="special" data-filter-value="mojito">🌿 Mojito</span>
+      <span class="filter-chip filter-chip--longdrink" data-filter-type="special" data-filter-value="longdrink">🥤 Long Drink</span>
+    </div>
     <div class="no-results" id="noResults">Nessun cocktail trovato.</div>
   </div>
 
@@ -596,7 +675,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Amaricante, aromatico, dissetante</div>
   </div>
 
-<div class="card" data-name="anna e marco" data-base="vodka rum" data-taste="dolce, fruttato, tropicale">
+<div class="card" data-name="anna e marco" data-base="vodka rum" data-taste="dolce, fruttato, tropicale" data-tags="i-nostri">
     <div class="card-head">
       <div class="card-name">Anna e Marco</div>
       <div class="card-glass">Balloon 45cl</div>
@@ -681,7 +760,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Fruttato, delicato, frizzante</div>
   </div>
 
-<div class="card" data-name="black russian" data-base="vodka" data-taste="intenso, dolce, robusto">
+<div class="card" data-name="black russian" data-base="vodka" data-taste="intenso, dolce, robusto" data-tags="caffeina">
     <div class="card-head">
       <div class="card-name">Black Russian</div>
       <div class="card-glass">Rocks Glass</div>
@@ -715,7 +794,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Speziato, sapido, robusto</div>
   </div>
 
-<div class="card" data-name="buonanotte fiorellino" data-base="gin" data-taste="floreale, agrumato, fresco">
+<div class="card" data-name="buonanotte fiorellino" data-base="gin" data-taste="floreale, agrumato, fresco" data-tags="sour i-nostri">
     <div class="card-head">
       <div class="card-name">Buonanotte Fiorellino</div>
       <div class="card-glass">Highball</div>
@@ -733,7 +812,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Floreale, agrumato, fresco</div>
   </div>
 
-<div class="card" data-name="caipirinha" data-base="cachaca" data-taste="agrumato, deciso, rustico">
+<div class="card" data-name="caipirinha" data-base="cachaca" data-taste="agrumato, deciso, rustico" data-tags="sour">
     <div class="card-head">
       <div class="card-name">Caipirinha</div>
       <div class="card-glass">Rocks Glass</div>
@@ -749,7 +828,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Agrumato, deciso, rustico</div>
   </div>
 
-<div class="card" data-name="catatumbo" data-base="rum" data-taste="agrodolce, speziato, fresco" data-category="fuori-menu">
+<div class="card" data-name="catatumbo" data-base="rum" data-taste="agrodolce, speziato, fresco" data-category="fuori-menu" data-tags="i-nostri">
     <div class="card-head">
       <div class="card-name">Catatumbo</div>
       <div class="card-glass">Highball / Mug da Mule</div>
@@ -799,7 +878,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Agrumato, dolce, dissetante</div>
   </div>
 
-<div class="card" data-name="cucurrucucú paloma" data-base="tequila" data-taste="agrumato, amaricante, fresco">
+<div class="card" data-name="cucurrucucú paloma" data-base="tequila" data-taste="agrumato, amaricante, fresco" data-tags="i-nostri">
     <div class="card-head">
       <div class="card-name">Cucurrucucú Paloma</div>
       <div class="card-glass">Highball</div>
@@ -816,7 +895,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Agrumato, amaricante, fresco</div>
   </div>
 
-<div class="card" data-name="daiquiri" data-base="rum" data-taste="fresco, acidulo, pulito">
+<div class="card" data-name="daiquiri" data-base="rum" data-taste="fresco, acidulo, pulito" data-tags="sour">
     <div class="card-head">
       <div class="card-name">Daiquiri</div>
       <div class="card-glass">Coppetta Martini</div>
@@ -848,7 +927,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Piccante, speziato, dissetante</div>
   </div>
 
-<div class="card" data-name="disaronno sour morgenthaler" data-base="disaronno bourbon" data-taste="dolce, agrumato, avvolgente">
+<div class="card" data-name="disaronno sour morgenthaler" data-base="disaronno bourbon" data-taste="dolce, agrumato, avvolgente" data-tags="sour">
     <div class="card-head">
       <div class="card-name">Disaronno Sour</div>
       <div class="card-glass">Rocks Glass</div>
@@ -864,7 +943,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Dolce, agrumato, avvolgente</div>
   </div>
 
-  <div class="card" data-name="disaronno sour morgenthaler" data-base="disaronno bourbon" data-taste="agrumato, robusto, equilibrato" data-category="fuori-menu">
+  <div class="card" data-name="disaronno sour morgenthaler" data-base="disaronno bourbon" data-taste="agrumato, robusto, equilibrato" data-category="fuori-menu" data-tags="sour">
     <div class="card-head">
       <div class="card-name">Disaronno Sour — Variante Morgenthaler</div>
       <div class="card-glass">Rocks Glass</div>
@@ -896,7 +975,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Secco, aromatico, deciso</div>
   </div>
 
-<div class="card" data-name="espresso martini" data-base="vodka" data-taste="intenso, cremoso, tostato">
+<div class="card" data-name="espresso martini" data-base="vodka" data-taste="intenso, cremoso, tostato" data-tags="caffeina">
     <div class="card-head">
       <div class="card-name">Espresso Martini</div>
       <div class="card-glass">Coppetta Martini</div>
@@ -943,7 +1022,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Agrumato, amaricante, fresco</div>
   </div>
 
-<div class="card" data-name="gin fizz" data-base="gin" data-taste="agrumato, frizzante, fresco">
+<div class="card" data-name="gin fizz" data-base="gin" data-taste="agrumato, frizzante, fresco" data-tags="sour">
     <div class="card-head">
       <div class="card-name">Gin Fizz</div>
       <div class="card-glass">Tumbler</div>
@@ -975,7 +1054,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Secco, botanico, rinfrescante</div>
   </div>
 
-<div class="card" data-name="godfather" data-base="scotch whisky" data-taste="intenso, dolce, robusto" data-category="fuori-menu">
+<div class="card" data-name="godfather" data-base="scotch whisky whiskey" data-taste="intenso, dolce, robusto" data-category="fuori-menu">
     <div class="card-head">
       <div class="card-name">Godfather</div>
       <div class="card-glass">Rocks Glass</div>
@@ -1054,7 +1133,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Secco, speziato, rinfrescante</div>
   </div>
 
-<div class="card" data-name="iovem sour" data-base="iovem" data-taste="agrumato, aromatico, equilibrato">
+<div class="card" data-name="iovem sour" data-base="iovem" data-taste="agrumato, aromatico, equilibrato" data-tags="sour">
     <div class="card-head">
       <div class="card-name">Iovem Sour</div>
       <div class="card-glass">Coppetta Cocktail</div>
@@ -1071,7 +1150,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Agrumato, aromatico, equilibrato</div>
   </div>
 
-<div class="card" data-name="irish coffee" data-base="jameson whiskey" data-taste="caldo, dolce, robusto" data-category="fuori-menu">
+<div class="card" data-name="irish coffee" data-base="jameson whiskey" data-taste="caldo, dolce, robusto" data-category="fuori-menu" data-tags="caffeina">
     <div class="card-head">
       <div class="card-name">Irish Coffee</div>
       <div class="card-glass">Bicchiere da Irish Coffee</div>
@@ -1088,7 +1167,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Caldo, dolce, robusto</div>
   </div>
 
-<div class="card" data-name="john collins" data-base="gin" data-taste="agrumato, dissetante, fresco" data-category="fuori-menu">
+<div class="card" data-name="john collins" data-base="gin" data-taste="agrumato, dissetante, fresco" data-category="fuori-menu" data-tags="sour">
     <div class="card-head">
       <div class="card-name">John Collins</div>
       <div class="card-glass">Collins Glass</div>
@@ -1121,7 +1200,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Agrumato, secco, deciso</div>
   </div>
 
-<div class="card" data-name="lemon drop martini" data-base="vodka" data-taste="agrumato, dolce, secco" data-category="fuori-menu">
+<div class="card" data-name="lemon drop martini" data-base="vodka" data-taste="agrumato, dolce, secco" data-category="fuori-menu" data-tags="sour">
     <div class="card-head">
       <div class="card-name">Lemon Drop Martini</div>
       <div class="card-glass">Coppetta Martini</div>
@@ -1204,7 +1283,92 @@
     </div>
   </details>
 
-<div class="card" data-name="long island iced tea" data-base="vodka gin rum tequila" data-taste="intenso, agrumato, deciso">
+  <div class="card special-card hidden" data-special="longdrink" data-name="gin tonic" data-base="gin" data-taste="dissetante, versatile, essenziale">
+    <div class="card-head">
+      <div class="card-name">Gin Tonic</div>
+      <div class="card-glass">Highball</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Acqua Tonica</span><span class="amt">a colmare</span></li>
+      <li><span>Gin</span><span class="amt">50 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa il distillato su ghiaccio in tumbler alto, completa con il topping indicato e mescola.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Lime</div>
+    <div class="garnish"><span class="label">Gusto</span> — Dissetante, versatile, essenziale</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="longdrink" data-name="vodka tonic" data-base="vodka" data-taste="dissetante, versatile, essenziale">
+    <div class="card-head">
+      <div class="card-name">Vodka Tonic</div>
+      <div class="card-glass">Highball</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Acqua Tonica</span><span class="amt">a colmare</span></li>
+      <li><span>Vodka</span><span class="amt">50 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa il distillato su ghiaccio in tumbler alto, completa con il topping indicato e mescola.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Lime</div>
+    <div class="garnish"><span class="label">Gusto</span> — Dissetante, versatile, essenziale</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="longdrink" data-name="tequila tonic" data-base="tequila" data-taste="dissetante, versatile, essenziale">
+    <div class="card-head">
+      <div class="card-name">Tequila Tonic</div>
+      <div class="card-glass">Highball</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Acqua Tonica</span><span class="amt">a colmare</span></li>
+      <li><span>Tequila</span><span class="amt">50 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa il distillato su ghiaccio in tumbler alto, completa con il topping indicato e mescola.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Lime</div>
+    <div class="garnish"><span class="label">Gusto</span> — Dissetante, versatile, essenziale</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="longdrink" data-name="whisky e cola" data-base="whiskey" data-taste="dissetante, versatile, essenziale">
+    <div class="card-head">
+      <div class="card-name">Whisky e Cola</div>
+      <div class="card-glass">Highball</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Cola</span><span class="amt">a colmare</span></li>
+      <li><span>Whisky</span><span class="amt">50 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa il distillato su ghiaccio in tumbler alto, completa con il topping indicato e mescola.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Dissetante, versatile, essenziale</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="longdrink" data-name="rum e cola" data-base="rum" data-taste="dissetante, versatile, essenziale">
+    <div class="card-head">
+      <div class="card-name">Rum e Cola</div>
+      <div class="card-glass">Highball</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Cola</span><span class="amt">a colmare</span></li>
+      <li><span>Rum</span><span class="amt">50 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa il distillato su ghiaccio in tumbler alto, completa con il topping indicato e mescola.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Limone</div>
+    <div class="garnish"><span class="label">Gusto</span> — Dissetante, versatile, essenziale</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="longdrink" data-name="vodka spuma" data-base="vodka" data-taste="dissetante, versatile, essenziale">
+    <div class="card-head">
+      <div class="card-name">Vodka Spuma</div>
+      <div class="card-glass">Highball</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Spuma</span><span class="amt">a colmare</span></li>
+      <li><span>Vodka</span><span class="amt">50 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa il distillato su ghiaccio in tumbler alto, completa con il topping indicato e mescola.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Dissetante, versatile, essenziale</div>
+  </div>
+
+
+<div class="card" data-name="long island iced tea" data-base="vodka gin rum tequila" data-taste="intenso, agrumato, deciso" data-tags="sour">
     <div class="card-head">
       <div class="card-name">Long Island Iced Tea</div>
       <div class="card-glass">Highball</div>
@@ -1337,7 +1501,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Mentolato, robusto, fresco</div>
   </div>
 
-<div class="card" data-name="mint kick" data-base="caffè" data-taste="tostato, mentolato, energico">
+<div class="card" data-name="mint kick" data-base="caffè" data-taste="tostato, mentolato, energico" data-tags="caffeina">
     <div class="card-head">
       <div class="card-name">Mint Kick</div>
       <div class="card-glass">Rocks Glass</div>
@@ -1353,7 +1517,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Tostato, mentolato, energico</div>
   </div>
 
-<div class="card" data-name="mojito" data-base="rum" data-taste="fresco, agrumato, mentolato" data-category="fuori-menu">
+<div class="card" data-name="mojito" data-base="rum" data-taste="fresco, agrumato, mentolato" data-category="fuori-menu" data-tags="sour">
     <div class="card-head">
       <div class="card-name">Mojito</div>
       <div class="card-glass">Highball</div>
@@ -1371,7 +1535,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Fresco, agrumato, mentolato</div>
   </div>
 
-<div class="card" data-name="mojito analcolico" data-base="analcolico" data-taste="fresco, mentolato, speziato">
+  <div class="card" data-name="mojito analcolico" data-base="analcolico" data-taste="fresco, mentolato, speziato" data-tags="sour">
     <div class="card-head">
       <div class="card-name">Mojito Analcolico</div>
       <div class="card-glass">Highball</div>
@@ -1388,23 +1552,170 @@
     <div class="garnish"><span class="label">Gusto</span> — Fresco, mentolato, speziato</div>
   </div>
 
-  <div class="card" data-name="mojito pestato" data-base="rum" data-taste="fresco, agrumato, rustico">
+<details class="card-expandable" data-name="mojito varianti pestato merini marinetti malaparte marquez iovem cachaca sedano" data-base="rum iovem cachaca" data-taste="fresco, mentolato, agrumato">
+    <summary>
+      <div class="exp-title-wrap">
+        <span class="exp-title">Mojito — Varianti</span>
+        <span class="exp-subtitle">Mojito (pestato) — 50 ml Rum bianco, Lime a spicchi, Zucchero, Menta, Soda a colmare</span>
+      </div>
+      <span class="exp-chevron">+</span>
+    </summary>
+    <div class="exp-body">
+      <div class="base-recipe">
+        <span class="label">Struttura base</span>
+        Distillato (o altro) 50 ml + lime + zucchero + menta pestati, allungati con soda (o altro topping) a colmare.
+      </div>
+      <ul class="variant-list">
+        <li>
+          <span class="variant-name">Mojito (pestato)</span>
+          <ul class="variant-ingredients">
+            <li><span>Soda</span><span class="amt">a colmare</span></li>
+            <li><span>Rum bianco</span><span class="amt">50 ml</span></li>
+            <li><span>Foglie di menta</span><span class="amt">8-10</span></li>
+            <li><span>Zucchero semolato</span><span class="amt">2 cucchiaini</span></li>
+            <li><span>Lime a spicchi</span><span class="amt">1/2</span></li>
+          </ul>
+          <span class="variant-note">Lime e zucchero pestati insieme, tecnica artigianale</span>
+          <span class="variant-garnish">Garnish: menta</span>
+        </li>
+        <li>
+          <span class="variant-name">Mojito Merini</span>
+          <ul class="variant-ingredients">
+            <li><span>Soda</span><span class="amt">a colmare</span></li>
+            <li><span>Iovem</span><span class="amt">50 ml</span></li>
+            <li><span>Succo di lime</span><span class="amt">20 ml</span></li>
+            <li><span>Sciroppo di zucchero</span><span class="amt">20 ml</span></li>
+            <li><span>Foglie di menta</span><span class="amt">8-10</span></li>
+          </ul>
+          <span class="variant-garnish">Garnish: menta</span>
+        </li>
+        <li>
+          <span class="variant-name">Mojito Marinetti</span>
+          <ul class="variant-ingredients">
+            <li><span>Soda</span><span class="amt">a colmare</span></li>
+            <li><span>Bitter Martini Riserva</span><span class="amt">50 ml</span></li>
+            <li><span>Succo di lime</span><span class="amt">20 ml</span></li>
+            <li><span>Sciroppo di zucchero</span><span class="amt">20 ml</span></li>
+            <li><span>Foglie di menta</span><span class="amt">8-10</span></li>
+          </ul>
+          <span class="variant-garnish">Garnish: menta</span>
+        </li>
+        <li>
+          <span class="variant-name">Mojito Malaparte</span>
+          <ul class="variant-ingredients">
+            <li><span>Soda</span><span class="amt">a colmare</span></li>
+            <li><span>Liquore al Sedano</span><span class="amt">50 ml</span></li>
+            <li><span>Succo di lime</span><span class="amt">20 ml</span></li>
+            <li><span>Sciroppo di zucchero</span><span class="amt">20 ml</span></li>
+            <li><span>Foglie di menta</span><span class="amt">8-10</span></li>
+          </ul>
+          <span class="variant-garnish">Garnish: menta</span>
+        </li>
+        <li>
+          <span class="variant-name">Mojito Marquez</span>
+          <ul class="variant-ingredients">
+            <li><span>Soda</span><span class="amt">a colmare</span></li>
+            <li><span>Cachaça</span><span class="amt">50 ml</span></li>
+            <li><span>Passion Fruit</span><span class="amt">20 ml</span></li>
+            <li><span>Succo di lime</span><span class="amt">20 ml</span></li>
+            <li><span>Sciroppo di zucchero</span><span class="amt">20 ml</span></li>
+            <li><span>Foglie di menta</span><span class="amt">8-10</span></li>
+            <li><span>Tabasco</span><span class="amt">1-2 gocce</span></li>
+          </ul>
+          <span class="variant-garnish">Garnish: menta</span>
+        </li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="card special-card hidden" data-special="mojito" data-name="mojito pestato" data-base="mojito" data-taste="fresco, mentolato, agrumato" data-tags="sour">
     <div class="card-head">
       <div class="card-name">Mojito (pestato)</div>
       <div class="card-glass">Highball</div>
     </div>
-    <div class="desc">Versione artigianale del Mojito, con lime pestato a spicchi e zucchero semolato: più intensa e resinosa grazie agli olii della buccia.</div>
     <ul class="ingredients">
+      <li><span>Soda</span><span class="amt">a colmare</span></li>
       <li><span>Rum bianco</span><span class="amt">50 ml</span></li>
-      <li><span>Menta fresca</span><span class="amt">8-10 foglie</span></li>
+      <li><span>Foglie di menta</span><span class="amt">8-10</span></li>
       <li><span>Zucchero semolato</span><span class="amt">2 cucchiaini</span></li>
       <li><span>Lime a spicchi</span><span class="amt">1/2</span></li>
-      <li><span>Soda</span><span class="amt">a colmare</span></li>
     </ul>
-    <div class="method"><span class="label">Metodo</span>Pesta lime e zucchero per estrarre olii e succo, aggiungi la menta pestando leggermente, versa il rum, riempi di ghiaccio tritato, completa con soda e mescola dal basso verso l'alto.</div>
-    <div class="garnish"><span class="label">Garnish</span> — Rametto di menta</div>
-    <div class="garnish"><span class="label">Gusto</span> — Fresco, agrumato, rustico</div>
+    <div class="method"><span class="label">Metodo</span>Pesta lime, zucchero e menta sul fondo del bicchiere, aggiungi il distillato, riempi di ghiaccio tritato, completa con il topping indicato e mescola.</div>
+    <div class="method"><span class="label">Nota</span>Lime e zucchero pestati insieme, tecnica artigianale</div>
+    <div class="garnish"><span class="label">Garnish</span> — Menta</div>
+    <div class="garnish"><span class="label">Gusto</span> — Fresco, mentolato, agrumato</div>
   </div>
+
+  <div class="card special-card hidden" data-special="mojito" data-name="mojito merini" data-base="mojito" data-taste="fresco, mentolato, agrumato" data-tags="sour">
+    <div class="card-head">
+      <div class="card-name">Mojito Merini</div>
+      <div class="card-glass">Highball</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Soda</span><span class="amt">a colmare</span></li>
+      <li><span>Iovem</span><span class="amt">50 ml</span></li>
+      <li><span>Succo di lime</span><span class="amt">20 ml</span></li>
+      <li><span>Sciroppo di zucchero</span><span class="amt">20 ml</span></li>
+      <li><span>Foglie di menta</span><span class="amt">8-10</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Pesta lime, zucchero e menta sul fondo del bicchiere, aggiungi il distillato, riempi di ghiaccio tritato, completa con il topping indicato e mescola.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Menta</div>
+    <div class="garnish"><span class="label">Gusto</span> — Fresco, mentolato, agrumato</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="mojito" data-name="mojito marinetti" data-base="mojito" data-taste="fresco, mentolato, agrumato" data-tags="sour">
+    <div class="card-head">
+      <div class="card-name">Mojito Marinetti</div>
+      <div class="card-glass">Highball</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Soda</span><span class="amt">a colmare</span></li>
+      <li><span>Bitter Martini Riserva</span><span class="amt">50 ml</span></li>
+      <li><span>Succo di lime</span><span class="amt">20 ml</span></li>
+      <li><span>Sciroppo di zucchero</span><span class="amt">20 ml</span></li>
+      <li><span>Foglie di menta</span><span class="amt">8-10</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Pesta lime, zucchero e menta sul fondo del bicchiere, aggiungi il distillato, riempi di ghiaccio tritato, completa con il topping indicato e mescola.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Menta</div>
+    <div class="garnish"><span class="label">Gusto</span> — Fresco, mentolato, agrumato</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="mojito" data-name="mojito malaparte" data-base="mojito" data-taste="fresco, mentolato, agrumato" data-tags="sour">
+    <div class="card-head">
+      <div class="card-name">Mojito Malaparte</div>
+      <div class="card-glass">Highball</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Soda</span><span class="amt">a colmare</span></li>
+      <li><span>Liquore al Sedano</span><span class="amt">50 ml</span></li>
+      <li><span>Succo di lime</span><span class="amt">20 ml</span></li>
+      <li><span>Sciroppo di zucchero</span><span class="amt">20 ml</span></li>
+      <li><span>Foglie di menta</span><span class="amt">8-10</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Pesta lime, zucchero e menta sul fondo del bicchiere, aggiungi il distillato, riempi di ghiaccio tritato, completa con il topping indicato e mescola.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Menta</div>
+    <div class="garnish"><span class="label">Gusto</span> — Fresco, mentolato, agrumato</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="mojito" data-name="mojito marquez" data-base="mojito" data-taste="fresco, mentolato, agrumato" data-tags="sour">
+    <div class="card-head">
+      <div class="card-name">Mojito Marquez</div>
+      <div class="card-glass">Highball</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Soda</span><span class="amt">a colmare</span></li>
+      <li><span>Cachaça</span><span class="amt">50 ml</span></li>
+      <li><span>Passion Fruit</span><span class="amt">20 ml</span></li>
+      <li><span>Succo di lime</span><span class="amt">20 ml</span></li>
+      <li><span>Sciroppo di zucchero</span><span class="amt">20 ml</span></li>
+      <li><span>Foglie di menta</span><span class="amt">8-10</span></li>
+      <li><span>Tabasco</span><span class="amt">1-2 gocce</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Pesta lime, zucchero e menta sul fondo del bicchiere, aggiungi il distillato, riempi di ghiaccio tritato, completa con il topping indicato e mescola.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Menta</div>
+    <div class="garnish"><span class="label">Gusto</span> — Fresco, mentolato, agrumato</div>
+  </div>
+
 
 <div class="card" data-name="monkey gland" data-base="gin" data-taste="fruttato, speziato, anisato" data-category="fuori-menu">
     <div class="card-head">
@@ -1561,6 +1872,165 @@
     </div>
   </details>
 
+  <div class="card special-card hidden" data-special="negroni" data-name="negroni" data-base="negroni" data-taste="amaricante, robusto, aromatico">
+    <div class="card-head">
+      <div class="card-name">Negroni</div>
+      <div class="card-glass">Rocks Glass</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Gin Bombay Sapphire</span><span class="amt">30 ml</span></li>
+      <li><span>Martini Rosso</span><span class="amt">30 ml</span></li>
+      <li><span>Bitter Martini Riserva</span><span class="amt">30 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa gli ingredienti direttamente su ghiaccio in rocks glass, mescola bene.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Twist d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Amaricante, robusto, aromatico</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="negroni" data-name="alla juri" data-base="negroni" data-taste="amaricante, robusto, aromatico">
+    <div class="card-head">
+      <div class="card-name">Alla Juri</div>
+      <div class="card-glass">Rocks Glass</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Gin Bombay Sapphire</span><span class="amt">30 ml</span></li>
+      <li><span>Martini Rubino</span><span class="amt">30 ml</span></li>
+      <li><span>Bitter Martini Riserva</span><span class="amt">30 ml</span></li>
+      <li><span>Angostura</span><span class="amt">2 dash</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa gli ingredienti direttamente su ghiaccio in rocks glass, mescola bene.</div>
+    <div class="method"><span class="label">Nota</span>Servire con cannuccia e fetta di limone</div>
+    <div class="garnish"><span class="label">Garnish</span> — Twist d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Amaricante, robusto, aromatico</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="negroni" data-name="pornonegroni" data-base="negroni" data-taste="amaricante, robusto, aromatico">
+    <div class="card-head">
+      <div class="card-name">Pornonegroni</div>
+      <div class="card-glass">Rocks Glass</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Gin Bombay Sapphire</span><span class="amt">25 ml</span></li>
+      <li><span>Vermut Dandi</span><span class="amt">20 ml</span></li>
+      <li><span>Select</span><span class="amt">20 ml</span></li>
+      <li><span>Fernet</span><span class="amt">10 ml</span></li>
+      <li><span>Disaronno</span><span class="amt">10 ml</span></li>
+      <li><span>Assenzio</span><span class="amt">2 dash</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa gli ingredienti direttamente su ghiaccio in rocks glass, mescola bene.</div>
+    <div class="method"><span class="label">Nota</span>Servire in coppetta Martini</div>
+    <div class="garnish"><span class="label">Garnish</span> — Twist d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Amaricante, robusto, aromatico</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="negroni" data-name="toscano" data-base="negroni" data-taste="amaricante, robusto, aromatico">
+    <div class="card-head">
+      <div class="card-name">Toscano</div>
+      <div class="card-glass">Rocks Glass</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Gin Ambrosia</span><span class="amt">30 ml</span></li>
+      <li><span>Vermut di Prato</span><span class="amt">30 ml</span></li>
+      <li><span>Bitter Du.it</span><span class="amt">30 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa gli ingredienti direttamente su ghiaccio in rocks glass, mescola bene.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Twist d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Amaricante, robusto, aromatico</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="negroni" data-name="mediterraneo" data-base="negroni" data-taste="amaricante, robusto, aromatico">
+    <div class="card-head">
+      <div class="card-name">Mediterraneo</div>
+      <div class="card-glass">Rocks Glass</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Gin Mare</span><span class="amt">30 ml</span></li>
+      <li><span>Vermut Du.it</span><span class="amt">30 ml</span></li>
+      <li><span>Campari</span><span class="amt">30 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa gli ingredienti direttamente su ghiaccio in rocks glass, mescola bene.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Twist d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Amaricante, robusto, aromatico</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="negroni" data-name="del lago" data-base="negroni" data-taste="amaricante, robusto, aromatico">
+    <div class="card-head">
+      <div class="card-name">Del Lago</div>
+      <div class="card-glass">Rocks Glass</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Gin Tanqueray</span><span class="amt">30 ml</span></li>
+      <li><span>Vermut Altolago</span><span class="amt">30 ml</span></li>
+      <li><span>Bitter Altolago</span><span class="amt">30 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa gli ingredienti direttamente su ghiaccio in rocks glass, mescola bene.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Twist d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Amaricante, robusto, aromatico</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="negroni" data-name="doc" data-base="negroni" data-taste="amaricante, robusto, aromatico">
+    <div class="card-head">
+      <div class="card-name">DOC</div>
+      <div class="card-glass">Rocks Glass</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Gin Tanqueray</span><span class="amt">30 ml</span></li>
+      <li><span>Vermut Cocchi</span><span class="amt">30 ml</span></li>
+      <li><span>Campari</span><span class="amt">30 ml</span></li>
+      <li><span>Angostura</span><span class="amt">2 dash</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa gli ingredienti direttamente su ghiaccio in rocks glass, mescola bene.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Twist d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Amaricante, robusto, aromatico</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="negroni" data-name="balsamico" data-base="negroni" data-taste="amaricante, robusto, aromatico">
+    <div class="card-head">
+      <div class="card-name">Balsamico</div>
+      <div class="card-glass">Rocks Glass</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Vodka B42*</span><span class="amt">30 ml</span></li>
+      <li><span>Vermut Aceto Balsamico</span><span class="amt">30 ml</span></li>
+      <li><span>Bitter Martini Riserva</span><span class="amt">30 ml</span></li>
+      <li><span>Cacao Bitters</span><span class="amt">2 dash</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa gli ingredienti direttamente su ghiaccio in rocks glass, mescola bene.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Twist d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Amaricante, robusto, aromatico</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="negroni" data-name="la cambiale" data-base="negroni" data-taste="amaricante, robusto, aromatico">
+    <div class="card-head">
+      <div class="card-name">La Cambiale</div>
+      <div class="card-glass">Rocks Glass</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Gin Only JU</span><span class="amt">30 ml</span></li>
+      <li><span>Liquore al Sedano*</span><span class="amt">30 ml</span></li>
+      <li><span>Bitter Du.it</span><span class="amt">30 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa gli ingredienti direttamente su ghiaccio in rocks glass, mescola bene.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Twist d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Amaricante, robusto, aromatico</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="negroni" data-name="negroni analcolico 0" data-base="negroni" data-taste="amaricante, robusto, aromatico">
+    <div class="card-head">
+      <div class="card-name">Negroni Analcolico 0%</div>
+      <div class="card-glass">Rocks Glass</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Tanqueray 0.0</span><span class="amt">30 ml</span></li>
+      <li><span>Martini Vibrante</span><span class="amt">30 ml</span></li>
+      <li><span>Bitter Analcolico Altolago</span><span class="amt">30 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa gli ingredienti direttamente su ghiaccio in rocks glass, mescola bene.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Twist d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Amaricante, robusto, aromatico</div>
+  </div>
+
+
 <div class="card" data-name="negroni analcolico 0%" data-base="martini vibrante" data-taste="amaro, aromatico, secco">
     <div class="card-head">
       <div class="card-name">Negroni Analcolico 0%</div>
@@ -1577,7 +2047,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Amaro, aromatico, secco</div>
   </div>
 
-<div class="card" data-name="old cuban" data-base="rum prosecco" data-taste="elegante, mentolato, frizzante" data-category="fuori-menu">
+<div class="card" data-name="old cuban" data-base="rum prosecco" data-taste="elegante, mentolato, frizzante" data-category="fuori-menu" data-tags="sour">
     <div class="card-head">
       <div class="card-name">Old Cuban</div>
       <div class="card-glass">Coppetta Cocktail</div>
@@ -1630,7 +2100,24 @@
     <div class="garnish"><span class="label">Gusto</span> — Agrumato, amaricante, fresco</div>
   </div>
 
-<div class="card" data-name="rusty nail" data-base="scotch drambuie" data-taste="intenso, dolce, speziato">
+  <div class="card" data-name="prato mule" data-base="gin vermouth" data-taste="piccante, aromatico, agrumato" data-tags="i-nostri">
+    <div class="card-head">
+      <div class="card-name">Prato Mule</div>
+      <div class="card-glass">Mule Cup / Highball</div>
+    </div>
+    <div class="desc">Gin Only JU e Vermut di Prato allungati da Ginger Beer con un tocco di orange bitters: piccante, aromatico e agrumato, una variante toscana del Moscow Mule.</div>
+    <ul class="ingredients">
+      <li><span>Ginger Beer</span><span class="amt">a colmare</span></li>
+      <li><span>Gin Only JU</span><span class="amt">40 ml</span></li>
+      <li><span>Vermut di Prato</span><span class="amt">20 ml</span></li>
+      <li><span>Orange Bitters</span><span class="amt">2 dash</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa gin, vermut e orange bitters su ghiaccio in tumbler alto (o mule cup), completa con Ginger Beer, mescola delicatamente.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Fetta d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Piccante, aromatico, agrumato</div>
+  </div>
+
+<div class="card" data-name="rusty nail" data-base="scotch whiskey drambuie" data-taste="intenso, dolce, speziato">
     <div class="card-head">
       <div class="card-name">Rusty Nail</div>
       <div class="card-glass">Rocks Glass</div>
@@ -1645,7 +2132,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Intenso, dolce, speziato</div>
   </div>
 
-<div class="card" data-name="sally" data-base="tequila" data-taste="amaricante, agrumato, aromatico">
+<div class="card" data-name="sally" data-base="tequila" data-taste="amaricante, agrumato, aromatico" data-tags="i-nostri">
     <div class="card-head">
       <div class="card-name">Sally</div>
       <div class="card-glass">Highball</div>
@@ -1710,7 +2197,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Dolce, effervescente, speziato</div>
   </div>
 
-<div class="card" data-name="southside" data-base="gin" data-taste="fresco, mentolato, agrumato" data-category="fuori-menu">
+<div class="card" data-name="southside" data-base="gin" data-taste="fresco, mentolato, agrumato" data-category="fuori-menu" data-tags="sour">
     <div class="card-head">
       <div class="card-name">Southside</div>
       <div class="card-glass">Coppetta Cocktail</div>
@@ -1826,6 +2313,165 @@
     </div>
   </details>
 
+  <div class="card special-card hidden" data-special="spritz" data-name="spritz" data-base="spritz" data-taste="frizzante, versatile, aperitivo">
+    <div class="card-head">
+      <div class="card-name">Spritz</div>
+      <div class="card-glass">Calice da Vino</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Prosecco</span><span class="amt">90 ml</span></li>
+      <li><span>Casoni Aperitivo</span><span class="amt">60 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Riempi un calice da vino con ghiaccio, versa gli ingredienti, mescola delicatamente.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Fetta d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Frizzante, versatile, aperitivo</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="spritz" data-name="spritz bitter" data-base="spritz" data-taste="frizzante, versatile, aperitivo">
+    <div class="card-head">
+      <div class="card-name">Spritz Bitter</div>
+      <div class="card-glass">Calice da Vino</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Prosecco</span><span class="amt">90 ml</span></li>
+      <li><span>Martini Bitter</span><span class="amt">60 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Riempi un calice da vino con ghiaccio, versa gli ingredienti, mescola delicatamente.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Fetta d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Frizzante, versatile, aperitivo</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="spritz" data-name="spritz venezia" data-base="spritz" data-taste="frizzante, versatile, aperitivo">
+    <div class="card-head">
+      <div class="card-name">Spritz Venezia</div>
+      <div class="card-glass">Calice da Vino</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Prosecco</span><span class="amt">90 ml</span></li>
+      <li><span>Select</span><span class="amt">60 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Riempi un calice da vino con ghiaccio, versa gli ingredienti, mescola delicatamente.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Fetta d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Frizzante, versatile, aperitivo</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="spritz" data-name="spritz cynar" data-base="spritz" data-taste="frizzante, versatile, aperitivo">
+    <div class="card-head">
+      <div class="card-name">Spritz Cynar</div>
+      <div class="card-glass">Calice da Vino</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Prosecco</span><span class="amt">90 ml</span></li>
+      <li><span>Cynar</span><span class="amt">60 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Riempi un calice da vino con ghiaccio, versa gli ingredienti, mescola delicatamente.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Fetta d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Frizzante, versatile, aperitivo</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="spritz" data-name="spritz limoncello" data-base="spritz" data-taste="frizzante, versatile, aperitivo">
+    <div class="card-head">
+      <div class="card-name">Spritz Limoncello</div>
+      <div class="card-glass">Calice da Vino</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Prosecco</span><span class="amt">90 ml</span></li>
+      <li><span>Limoncello</span><span class="amt">60 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Riempi un calice da vino con ghiaccio, versa gli ingredienti, mescola delicatamente.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Fetta d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Frizzante, versatile, aperitivo</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="spritz" data-name="seli spritz" data-base="spritz" data-taste="frizzante, versatile, aperitivo">
+    <div class="card-head">
+      <div class="card-name">Seli Spritz</div>
+      <div class="card-glass">Calice da Vino</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Prosecco</span><span class="amt">90 ml</span></li>
+      <li><span>Liquore al sedano Selinon</span><span class="amt">60 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Riempi un calice da vino con ghiaccio, versa gli ingredienti, mescola delicatamente.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Fetta d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Frizzante, versatile, aperitivo</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="spritz" data-name="spritz venturo" data-base="spritz" data-taste="frizzante, versatile, aperitivo">
+    <div class="card-head">
+      <div class="card-name">Spritz Venturo</div>
+      <div class="card-glass">Calice da Vino</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Prosecco</span><span class="amt">90 ml</span></li>
+      <li><span>Venturo</span><span class="amt">60 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Riempi un calice da vino con ghiaccio, versa gli ingredienti, mescola delicatamente.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Fetta d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Frizzante, versatile, aperitivo</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="spritz" data-name="spritzit" data-base="spritz" data-taste="frizzante, versatile, aperitivo">
+    <div class="card-head">
+      <div class="card-name">Spritz.it</div>
+      <div class="card-glass">Calice da Vino</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Prosecco</span><span class="amt">90 ml</span></li>
+      <li><span>Bitter Du.it</span><span class="amt">60 ml</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Riempi un calice da vino con ghiaccio, versa gli ingredienti, mescola delicatamente.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Fetta d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Frizzante, versatile, aperitivo</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="spritz" data-name="hugo" data-base="spritz" data-taste="frizzante, versatile, aperitivo">
+    <div class="card-head">
+      <div class="card-name">Hugo</div>
+      <div class="card-glass">Calice da Vino</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Prosecco</span><span class="amt">90 ml</span></li>
+      <li><span>St. Germain (fiori di sambuco)</span><span class="amt">45 ml</span></li>
+      <li><span>Soda</span><span class="amt">splash</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Riempi un calice da vino con ghiaccio, versa gli ingredienti, mescola delicatamente.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Fetta d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Frizzante, versatile, aperitivo</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="spritz" data-name="antognoni" data-base="spritz" data-taste="frizzante, versatile, aperitivo">
+    <div class="card-head">
+      <div class="card-name">Antognoni</div>
+      <div class="card-glass">Calice da Vino</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Acqua Tonica</span><span class="amt">9 cl</span></li>
+      <li><span>Liquore Iovem</span><span class="amt">6 cl</span></li>
+      <li><span>Prosecco</span><span class="amt">splash</span></li>
+      <li><span>Orange bitter</span><span class="amt">2 dash</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Riempi un calice da vino con ghiaccio, versa gli ingredienti, mescola delicatamente.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Fetta d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Frizzante, versatile, aperitivo</div>
+  </div>
+
+  <div class="card special-card hidden" data-special="spritz" data-name="spritz analcolico variante interna" data-base="spritz" data-taste="frizzante, versatile, aperitivo">
+    <div class="card-head">
+      <div class="card-name">Spritz Analcolico</div>
+      <div class="card-glass">Calice da Vino</div>
+    </div>
+    <ul class="ingredients">
+      <li><span>Acqua Tonica</span><span class="amt">a colmare</span></li>
+      <li><span>Crodino</span><span class="amt">1</span></li>
+      <li><span>Martini Vibrante</span><span class="amt">3 cl</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Riempi un calice da vino con ghiaccio, versa gli ingredienti, mescola delicatamente.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Fetta d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Frizzante, versatile, aperitivo</div>
+  </div>
+
+
 <div class="card" data-name="spritz analcolico" data-base="martini vibrante crodino" data-taste="agrumato, amaricante, vivace">
     <div class="card-head">
       <div class="card-name">Spritz Analcolico</div>
@@ -1858,7 +2504,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Amaricante, fruttato, frizzante</div>
   </div>
 
-<div class="card" data-name="stregowich" data-base="vodka" data-taste="erbaceo, agrumato, amaricante">
+<div class="card" data-name="stregowich" data-base="vodka" data-taste="erbaceo, agrumato, amaricante" data-tags="i-nostri">
     <div class="card-head">
       <div class="card-name">Stregowich</div>
       <div class="card-glass">Highball</div>
@@ -1892,7 +2538,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Fruttato, dolce, fresco</div>
   </div>
 
-<div class="card" data-name="tom collins" data-base="gin" data-taste="agrumato, morbido, fresco" data-category="fuori-menu">
+<div class="card" data-name="tom collins" data-base="gin" data-taste="agrumato, morbido, fresco" data-category="fuori-menu" data-tags="sour">
     <div class="card-head">
       <div class="card-name">Tom Collins</div>
       <div class="card-glass">Collins Glass</div>
@@ -1925,7 +2571,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Agrumato, dolce, fresco</div>
   </div>
 
-<div class="card" data-name="tropicana" data-base="rum" data-taste="dolce, tropicale, cremoso">
+<div class="card" data-name="tropicana" data-base="rum" data-taste="dolce, tropicale, cremoso" data-tags="i-nostri">
     <div class="card-head">
       <div class="card-name">Tropicana</div>
       <div class="card-glass">Balloon 45cl</div>
@@ -1944,23 +2590,23 @@
     <div class="garnish"><span class="label">Gusto</span> — Dolce, tropicale, cremoso</div>
   </div>
 
-<div class="card" data-name="volevo essere un duro" data-base="martini vibrante" data-taste="fruttato, frizzante, agrodolce">
+<div class="card" data-name="volevo essere un duro" data-base="martini vibrante analcolico vermouth" data-taste="fruttato, frizzante, agrodolce" data-tags="i-nostri">
     <div class="card-head">
       <div class="card-name">Volevo Essere un Duro</div>
-      <div class="card-glass">Highball</div>
+      <div class="card-glass">Calice</div>
     </div>
-    <div class="desc">Analcolico. Martini Vibrante e purea di lampone allungati da Lemon Soda: fruttato, frizzante e agrodolce, per chi vuole solo sembrare tosto.</div>
+    <div class="desc">Analcolico. Martini Vibrante e sciroppo di lampone allungati da Lemon Soda: fruttato, frizzante e agrodolce, per chi vuole solo sembrare tosto.</div>
     <ul class="ingredients">
       <li><span>Lemon Soda</span><span class="amt">a colmare</span></li>
-      <li><span>Martini Vibrante (0.0)</span><span class="amt">50 ml</span></li>
-      <li><span>Purea di lampone</span><span class="amt">15 ml</span></li>
+      <li><span>Martini Vibrante</span><span class="amt">60 ml</span></li>
+      <li><span>Sciroppo di lampone</span><span class="amt">15 ml</span></li>
     </ul>
-    <div class="method"><span class="label">Metodo</span>Versa Martini Vibrante e lampone su ghiaccio, completa con Lemon Soda e mescola.</div>
-    <div class="garnish"><span class="label">Garnish</span> — Lamponi freschi e limone</div>
+    <div class="method"><span class="label">Metodo</span>Versa Martini Vibrante e sciroppo di lampone su ghiaccio, completa con Lemon Soda e mescola.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Fetta di limone</div>
     <div class="garnish"><span class="label">Gusto</span> — Fruttato, frizzante, agrodolce</div>
   </div>
 
-<div class="card" data-name="whiskey sour" data-base="whiskey bourbon" data-taste="agrumato, robusto, vellutato">
+<div class="card" data-name="whiskey sour" data-base="whiskey bourbon" data-taste="agrumato, robusto, vellutato" data-tags="sour">
     <div class="card-head">
       <div class="card-name">Whiskey Sour</div>
       <div class="card-glass">Rocks Glass</div>
@@ -1975,6 +2621,24 @@
     <div class="method"><span class="label">Metodo</span>Shakera con ghiaccio, filtra in rocks glass con ghiaccio.</div>
     <div class="garnish"><span class="label">Garnish</span> — Twist di limone</div>
     <div class="garnish"><span class="label">Gusto</span> — Agrumato, robusto, vellutato</div>
+  </div>
+
+  <div class="card" data-name="whisky facile" data-base="scotch whisky whiskey" data-taste="affumicato, aromatico, robusto" data-tags="i-nostri">
+    <div class="card-head">
+      <div class="card-name">Whisky Facile</div>
+      <div class="card-glass">Rocks Glass</div>
+    </div>
+    <div class="desc">Scotch Whisky, Martini Ambrato e St. Germain, chiuso da un cucchiaio di Laphroaig in superficie: affumicato, aromatico e robusto.</div>
+    <ul class="ingredients">
+      <li><span>Scotch Whisky</span><span class="amt">45 ml</span></li>
+      <li><span>Martini Ambrato</span><span class="amt">15 ml</span></li>
+      <li><span>Laphroaig</span><span class="amt">1 cucchiaio (floater)</span></li>
+      <li><span>St. Germain</span><span class="amt">10 ml</span></li>
+      <li><span>Angostura</span><span class="amt">2 dash</span></li>
+    </ul>
+    <div class="method"><span class="label">Metodo</span>Versa Scotch, Martini Ambrato, St. Germain e Angostura nel mixing glass con ghiaccio, mescola bene. Filtra in rocks glass con ghiaccio, completa con un cucchiaio di Laphroaig versato delicatamente in superficie.</div>
+    <div class="garnish"><span class="label">Garnish</span> — Scorza d'arancia</div>
+    <div class="garnish"><span class="label">Gusto</span> — Affumicato, aromatico, robusto</div>
   </div>
 
 <div class="card" data-name="white lady" data-base="gin" data-taste="agrumato, secco, elegante" data-category="fuori-menu">
@@ -1993,7 +2657,7 @@
     <div class="garnish"><span class="label">Gusto</span> — Agrumato, secco, elegante</div>
   </div>
 
-<div class="card" data-name="white russian" data-base="vodka" data-taste="cremoso, dolce, intenso">
+<div class="card" data-name="white russian" data-base="vodka" data-taste="cremoso, dolce, intenso" data-tags="caffeina">
     <div class="card-head">
       <div class="card-name">White Russian</div>
       <div class="card-glass">Rocks Glass</div>
@@ -2009,62 +2673,257 @@
     <div class="garnish"><span class="label">Gusto</span> — Cremoso, dolce, intenso</div>
   </div>
 
-  <footer>Carta creata su misura — quarantatré ricette + Long Drink + Spritz + Negroni</footer>
+  <footer>Carta creata su misura — settantadue ricette + Long Drink + Spritz + Negroni + Mojito Varianti</footer>
 
 </div>
 
 <script>
   const searchInput = document.getElementById('searchInput');
-  const cards = Array.from(document.querySelectorAll('.card, .card-expandable'));
+  const cards = Array.from(document.querySelectorAll('.card:not(.special-card), .card-expandable'));
+  const specialCards = Array.from(document.querySelectorAll('.special-card'));
+  const allTaggableEls = Array.from(document.querySelectorAll('.card, .card-expandable'));
   const noResults = document.getElementById('noResults');
   const baseChips = document.querySelectorAll('.filter-chip[data-filter-type="base"]');
   const categoryChips = document.querySelectorAll('.filter-chip[data-filter-type="category"]');
+  const tagChips = document.querySelectorAll('.filter-chip[data-filter-type="tag"]');
+  const specialChips = document.querySelectorAll('.filter-chip[data-filter-type="special"]');
   let activeBase = '';
   let activeCategory = 'menu';
+  let activeTags = new Set();
+  let activeSpecial = '';
 
   function applyFilters(){
     const query = searchInput.value.trim().toLowerCase();
     let visibleCount = 0;
 
-    cards.forEach(card => {
-      const name = card.getAttribute('data-name') || '';
-      const base = card.getAttribute('data-base') || '';
-      const taste = card.getAttribute('data-taste') || '';
-      const category = card.getAttribute('data-category') || 'menu';
+    if(activeSpecial){
+      cards.forEach(card => card.classList.add('hidden'));
 
-      const matchesQuery = !query || name.includes(query) || base.includes(query) || taste.includes(query);
-      const matchesBase = !activeBase || base.includes(activeBase);
-      const matchesCategory = category === activeCategory;
+      specialCards.forEach(card => {
+        const name = card.getAttribute('data-name') || '';
+        const taste = card.getAttribute('data-taste') || '';
+        const special = card.getAttribute('data-special') || '';
+        const category = card.getAttribute('data-category') || 'menu';
 
-      if(matchesQuery && matchesBase && matchesCategory){
-        card.classList.remove('hidden');
-        visibleCount++;
-      } else {
-        card.classList.add('hidden');
-      }
-    });
+        const matchesQuery = !query || name.includes(query) || taste.includes(query);
+        const matchesSpecial = special === activeSpecial;
+        const matchesCategory = category === activeCategory;
+
+        if(matchesQuery && matchesSpecial && matchesCategory){
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    } else {
+      specialCards.forEach(card => card.classList.add('hidden'));
+
+      cards.forEach(card => {
+        const name = card.getAttribute('data-name') || '';
+        const base = card.getAttribute('data-base') || '';
+        const taste = card.getAttribute('data-taste') || '';
+        const category = card.getAttribute('data-category') || 'menu';
+        const tags = card.getAttribute('data-tags') || '';
+
+        const matchesQuery = !query || name.includes(query) || base.includes(query) || taste.includes(query);
+        const matchesBase = !activeBase || base.includes(activeBase);
+        const matchesCategory = category === activeCategory;
+        const matchesTags = activeTags.size === 0 || [...activeTags].every(t => tags.includes(t));
+
+        if(matchesQuery && matchesBase && matchesCategory && matchesTags){
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
 
     noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+  }
+
+  function setBaseFilter(val){
+    activeBase = val;
+    baseChips.forEach(c => c.classList.toggle('active', c.getAttribute('data-filter-value') === val));
+    // Selezionare una base alcolica azzera i filtri categoria (Caffeina/Sour/I Nostri)
+    activeTags.clear();
+    tagChips.forEach(c => c.classList.remove('active'));
+    applyFilters();
+  }
+
+  function setCategoryFilter(val){
+    activeCategory = val;
+    categoryChips.forEach(c => c.classList.toggle('active', c.getAttribute('data-filter-value') === val));
+    applyFilters();
+  }
+
+  // ===== Regole di incompatibilità tra filtri categoria/special =====
+  const INCOMPATIBLE = {
+    'sour': ['caffeina', 'negroni', 'spritz'],
+    'caffeina': ['sour', 'negroni', 'spritz', 'mojito'],
+    'negroni': ['sour', 'caffeina'],
+    'spritz': ['sour', 'caffeina'],
+    'mojito': ['caffeina'],
+  };
+
+  function deactivateTag(val){
+    activeTags.delete(val);
+    tagChips.forEach(c => {
+      if(c.getAttribute('data-filter-value') === val) c.classList.remove('active');
+    });
+  }
+
+  function deactivateSpecial(){
+    activeSpecial = '';
+    specialChips.forEach(c => c.classList.remove('active'));
+  }
+
+  function enforceIncompatibility(activatedValue){
+    const conflicts = INCOMPATIBLE[activatedValue] || [];
+    conflicts.forEach(c => {
+      if(activeTags.has(c)) deactivateTag(c);
+      if(activeSpecial === c) deactivateSpecial();
+    });
+  }
+
+  function toggleTagFilter(val){
+    const turningOn = !activeTags.has(val);
+    if(activeTags.has(val)){
+      activeTags.delete(val);
+    } else {
+      activeTags.add(val);
+    }
+    tagChips.forEach(c => {
+      if(c.getAttribute('data-filter-value') === val){
+        c.classList.toggle('active', activeTags.has(val));
+      }
+    });
+    if(turningOn){
+      enforceIncompatibility(val);
+    }
+    // Selezionare un filtro categoria azzera la base alcolica
+    if(activeTags.size > 0){
+      activeBase = '';
+      baseChips.forEach(c => c.classList.toggle('active', c.getAttribute('data-filter-value') === ''));
+    }
+    applyFilters();
+  }
+
+  function setSpecialFilter(val){
+    if(activeSpecial === val){
+      activeSpecial = '';
+      specialChips.forEach(c => c.classList.remove('active'));
+    } else {
+      activeSpecial = val;
+      specialChips.forEach(c => c.classList.toggle('active', c.getAttribute('data-filter-value') === val));
+      enforceIncompatibility(val);
+    }
+    applyFilters();
   }
 
   searchInput.addEventListener('input', applyFilters);
 
   baseChips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      baseChips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      activeBase = chip.getAttribute('data-filter-value');
-      applyFilters();
-    });
+    chip.addEventListener('click', () => setBaseFilter(chip.getAttribute('data-filter-value')));
   });
 
   categoryChips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      categoryChips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      activeCategory = chip.getAttribute('data-filter-value');
-      applyFilters();
+    chip.addEventListener('click', () => setCategoryFilter(chip.getAttribute('data-filter-value')));
+  });
+
+  tagChips.forEach(chip => {
+    chip.addEventListener('click', () => toggleTagFilter(chip.getAttribute('data-filter-value')));
+  });
+
+  specialChips.forEach(chip => {
+    chip.addEventListener('click', () => setSpecialFilter(chip.getAttribute('data-filter-value')));
+  });
+
+  // ===== Generazione tag-link in fondo a ogni scheda =====
+  const BASE_VALUES = ['vodka','rum','gin','tequila','whiskey','campari','analcolico'];
+  const TAG_LABELS = {
+    'caffeina': '☕ Caffeina',
+    'sour': '🍋 Sour',
+    'i-nostri': '⭐ I Nostri'
+  };
+  const SPECIAL_LABELS = {
+    'negroni': '🍸 Negroni',
+    'spritz': '🥂 Spritz',
+    'mojito': '🌿 Mojito',
+    'longdrink': '🥤 Long Drink'
+  };
+
+  function capitalize(s){
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+
+  function scrollToResults(){
+    const wrap = document.querySelector('.search-wrap');
+    if(wrap) wrap.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  function buildCardTags(el){
+    const container = document.createElement('div');
+    container.className = 'card-tags';
+    let any = false;
+
+    const base = (el.getAttribute('data-base') || '').toLowerCase();
+    BASE_VALUES.forEach(b => {
+      if(base.includes(b)){
+        const pill = document.createElement('span');
+        pill.className = 'card-tag';
+        pill.textContent = capitalize(b);
+        pill.addEventListener('click', () => { setBaseFilter(b); scrollToResults(); });
+        container.appendChild(pill);
+        any = true;
+      }
     });
+
+    const category = el.getAttribute('data-category');
+    if(category === 'fuori-menu'){
+      const pill = document.createElement('span');
+      pill.className = 'card-tag card-tag--fuori-menu';
+      pill.textContent = 'Fuori Menù';
+      pill.addEventListener('click', () => { setCategoryFilter('fuori-menu'); scrollToResults(); });
+      container.appendChild(pill);
+      any = true;
+    }
+
+    const tagsAttr = (el.getAttribute('data-tags') || '').split(/\s+/).filter(Boolean);
+    tagsAttr.forEach(t => {
+      if(TAG_LABELS[t]){
+        const pill = document.createElement('span');
+        pill.className = 'card-tag';
+        pill.textContent = TAG_LABELS[t];
+        pill.addEventListener('click', () => { toggleTagFilter(t); scrollToResults(); });
+        container.appendChild(pill);
+        any = true;
+      }
+    });
+
+    const special = el.getAttribute('data-special');
+    if(special && SPECIAL_LABELS[special]){
+      const pill = document.createElement('span');
+      pill.className = 'card-tag card-tag--' + special;
+      pill.textContent = SPECIAL_LABELS[special];
+      pill.addEventListener('click', () => { setSpecialFilter(special); scrollToResults(); });
+      container.appendChild(pill);
+      any = true;
+    }
+
+    return any ? container : null;
+  }
+
+  allTaggableEls.forEach(el => {
+    const tagsEl = buildCardTags(el);
+    if(!tagsEl) return;
+    if(el.classList.contains('card-expandable')){
+      const body = el.querySelector('.exp-body');
+      if(body) body.appendChild(tagsEl);
+    } else {
+      el.appendChild(tagsEl);
+    }
   });
 
   applyFilters();
